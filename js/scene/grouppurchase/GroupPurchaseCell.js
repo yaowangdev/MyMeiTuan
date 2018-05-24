@@ -16,7 +16,7 @@ export default class GroupPurchaseCell extends PureComponent<Props>{
         let imageUri = info.imageUri.replace('w.h','160.0');
         return(
             <View>
-                <TouchableOpacity style={{flexDirection:'row',padding:10}} activeOpacity={0.8}>
+                <TouchableOpacity style={{flexDirection:'row',padding:10,backgroundColor:'white'}} activeOpacity={0.8}>
                     <Image style={{width:80,height:80,borderRadius:5}} source={{uri:imageUri}}/>
                     <View style={{flex:1,paddingLeft:20,paddingRight:10}}>
                         <Heading2>{info.title}</Heading2>
