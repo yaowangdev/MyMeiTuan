@@ -1,4 +1,14 @@
 import { AppRegistry } from 'react-native';
 import MeiTuan from './js/Main';
+import React ,{PureComponent}from "react";
 
-AppRegistry.registerComponent('MyMeiTuan', () => MeiTuan);
+
+export default class Hello extends PureComponent<{}> {
+    render() {
+        return (
+            <MeiTuan />
+        );
+    }
+}
+
+AppRegistry.registerComponent('MyMeiTuan', () => Hello);

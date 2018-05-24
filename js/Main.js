@@ -6,23 +6,23 @@
 
 import React, {PureComponent} from 'react';
 import {StyleSheet, View} from "react-native";
-import {createStackNavigator,TabNavigator,TabBarBottom} from "react-navigation";
+import {StackNavigator,TabNavigator,TabBarBottom} from "react-navigation";
 import HomeScene from "./scene/home/HomeScene";
 import MineScene from "./scene/mine/MineScene";
 import NearbyScene from "./scene/nearby/NearbyScene";
 import OrderScene from "./scene/order/OrderScene";
 import TabBarItem from "./widget/TabBarItem";
-import color from "./Style/color";
+import color from "./style/color";
 import {StatusBar} from "react-native";
 
 
-const lightContentScenes = ['Home', 'Mine']
+const lightContentScenes = ['Home', 'Mine'];
 
 function getCurrentRouteName(navigationState: any) {
     if (!navigationState) {
         return null
     }
-    const route = navigationState.routes[navigationState.index]
+    const route = navigationState.routes[navigationState.index];
     // dive into nested navigators
     if (route.routes) {
         return getCurrentRouteName(route)
@@ -31,9 +31,9 @@ function getCurrentRouteName(navigationState: any) {
 }
 
 
-export default class MeiTuan extends PureComponent {
+export default class MeiTuan extends PureComponent<{}>{
     constructor() {
-        super()
+        super();
         StatusBar.setBarStyle('light-content')
     }
 
@@ -42,11 +42,11 @@ export default class MeiTuan extends PureComponent {
             <Navigator
                 onNavigationStateChange={
                     (prevState, currentState) => {
-                        const currentScene = getCurrentRouteName(currentState)
-                        const previousScene = getCurrentRouteName(prevState)
+                        const currentScene = getCurrentRouteName(currentState);
+                        const previousScene = getCurrentRouteName(prevState);
                         if (previousScene !== currentScene) {
-                            let i = lightContentScenes.indexOf(currentScene)
-                            console.log('currentScene='+i)
+                            let i = lightContentScenes.indexOf(currentScene);
+                            console.log('currentScene='+i);
                             if ( i >= 0) {
                                 StatusBar.setBarStyle('light-content')
                             } else {
@@ -62,11 +62,11 @@ export default class MeiTuan extends PureComponent {
 
 const Tab = TabNavigator(
     {
-        Home:{
-            screen:HomeScene,
-            navigationOptions:()=>({
-                tabBarLabel:'团购',
-                tabBarIcon:({focused,tintColor}) => (
+        Home: {
+            screen: HomeScene,
+            navigationOptions: ({navigation}) => ({
+                tabBarLabel: '团购',
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -76,11 +76,11 @@ const Tab = TabNavigator(
                 )
             }),
         },
-        Nearby:{
-            screen:NearbyScene,
-            navigationOptions:()=>({
-                tabBarLabel:'附近',
-                tabBarIcon:({focused,tintColor}) => (
+        Nearby: {
+            screen: NearbyScene,
+            navigationOptions: ({navigation}) => ({
+                tabBarLabel: '附近',
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -90,11 +90,12 @@ const Tab = TabNavigator(
                 )
             }),
         },
-        Order:{
-            screen:OrderScene,
-            navigationOptions:()=>({
-                tabBarLabel:'订单',
-                tabBarIcon:({focused,tintColor}) => (
+
+        Order: {
+            screen: OrderScene,
+            navigationOptions: ({navigation}) => ({
+                tabBarLabel: '订单',
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -104,11 +105,12 @@ const Tab = TabNavigator(
                 )
             }),
         },
-        Mine:{
-            screen:MineScene,
-            navigationOptions:()=>({
-                tabBarLabel:'我的',
-                tabBarIcon:({focused,tintColor}) => (
+
+        Mine: {
+            screen: MineScene,
+            navigationOptions: ({navigation}) => ({
+                tabBarLabel: '我的',
+                tabBarIcon: ({focused, tintColor}) => (
                     <TabBarItem
                         tintColor={tintColor}
                         focused={focused}
@@ -126,20 +128,31 @@ const Tab = TabNavigator(
         animationEnabled: false,
         swipeEnabled: false,
         tabBarOptions: {
-            activeTintColor: 'red',
+            activeTintColor: color.primary,
             inactiveTintColor: color.gray,
             style: {backgroundColor: '#ffffff'},
         },
     }
-)
+
+);
 
 
 
-const Navigator = createStackNavigator(
+const Navigator = StackNavigator(
     {
-        Tab:{screen:Tab}
+        Tab: {screen: Tab},
+        // Web: {screen: WebScene},
+        // GroupPurchase: {screen: GroupPurchaseScene},
+    },
+    {
+        navigationOptions: {
+            // headerStyle: { backgroundColor: color.primary }
+            headerBackTitle: null,
+            headerTintColor: color.primary,
+            showIcon: true,
+        },
     }
-)
+);
 
 
 
@@ -153,4 +166,4 @@ const styles = StyleSheet.create({
         backgroundColor:'black',
         flex:1
     }
-})
+});
