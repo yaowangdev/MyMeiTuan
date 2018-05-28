@@ -24,6 +24,13 @@ export default {
         {title: '优惠买单', icon: require('./img/home/icon_homepage_default.png')},
         {title: '休闲娱乐', icon: require('./img/home/icon_homepage_entertainment_category.png')},
         {title: 'KTV', icon: require('./img/home/icon_homepage_ktv_category.png')},
+    ],
+
+    orderMenuInfo:[
+        {title:'待付款',icon:require('./img/order/order_tab_need_pay.png')},
+        {title:'待使用',icon:require('./img/order/order_tab_need_use.png')},
+        {title:'待评价',icon:require('./img/order/order_tab_need_review.png')},
+        {title:'退款/售后',icon:require('./img/order/order_tab_needoffer_aftersale.png')},
     ]
 
 }
