@@ -17,7 +17,7 @@ export default class DetailCell extends PureComponent<Props>{
             <View style={{backgroundColor:'white'}}>
                 <TouchableOpacity>
                     <View style={[{flexDirection:'row',alignItems:'center'},this.props.propStyle]}>
-                        <Image style={{width:30,height:30}} source={this.props.iconUri}/>
+                        <Image style={{width:25,height:25,marginLeft:14}} source={this.props.iconUri}/>
                         <Text style={{color:'black',fontSize:14,marginLeft:14}}>{this.props.mainTitle}</Text>
                         <View style={{backgroundColor:'white',flex:1}}/>
                         <Text style={{color:'#777777',fontSize:14}}>{this.props.subTitle}</Text>
